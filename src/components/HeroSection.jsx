@@ -2,7 +2,7 @@ import React from "react";
 import { HERO_CONTENT } from "../utils/constants/text";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import bgVideo from "../assets/videos/bg.mp4";
+import bgVideo from "../assets/videos/bg2.mp4";
 
 const HeroSection = () => {
   return (
