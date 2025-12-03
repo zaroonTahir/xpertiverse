@@ -1,83 +1,118 @@
 import React from "react";
 import { HERO_CONTENT } from "../utils/constants/text";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
+import bgVideo from "../assets/videos/bg.mp4";
 
 const HeroSection = () => {
   return (
-<section
-  className="min-h-screen px-4 sm:px-6 lg:px-20 py-20 flex flex-col lg:flex-row lg:items-center text-white"
-  style={{
-    background: `radial-gradient(circle at center, #4D1D03, #000000 30%)`,
-  }}
->
+    <section className="min-h-screen px-4 sm:px-6 lg:px-20 py-24 flex items-center justify-center text-white relative overflow-hidden bg-black">
 
+      {/* Background Layer */}
+      <div className="absolute inset-0 overflow-hidden">
 
+        {/* ✅ Background Video (FULLY VISIBLE NOW) */}
+        <video
+          src={bgVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-      <div className="container max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
-
-        {/* Left Content */}
+        {/* ✔ Subtle diagonal lines */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              rgba(255,255,255,0.05) 0px,
+              rgba(255,255,255,0.05) 1px,
+              transparent 1px,
+              transparent 35px
+            )`,
+            backgroundSize: "300px 300px",
+          }}
+          animate={{ backgroundPosition: ["0 0", "300px 300px"] }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
+
+      {/* CENTER CONTENT */}
+      <div className="relative z-10 max-w-5xl w-full mx-auto text-center">
+
+        {/* Badge */}
+        <motion.p
+          initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="lg:w-1/2 flex flex-col items-start"
+          transition={{ duration: 0.6 }}
+          className="text-[#FF7043] mb-5 text-base font-semibold border border-white/20 
+                     rounded-full px-5 py-2 inline-block backdrop-blur-sm bg-black/40 
+                     shadow-md tracking-wider uppercase"
         >
-          <p className="text-[#DC2828] mb-4 text-base font-medium border border-[#1E293B] rounded-2xl px-2.5 py-3">
-            {HERO_CONTENT.badge}
-          </p>
+          {HERO_CONTENT.badge}
+        </motion.p>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-semibold text-white">
-            {HERO_CONTENT.heading1}
-          </h1>
+        {/* Heading 1 */}
+        <motion.h1
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white 
+                     leading-tight mb-2"
+        >
+          {HERO_CONTENT.heading1}
+        </motion.h1>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-semibold mb-4 leading-tight sm:leading-tight lg:leading-relaxed bg-linear-to-r from-[#F56716] to-[#EA4920] bg-clip-text text-transparent">
-            {HERO_CONTENT.heading2}
-          </h1>
+        {/* Heading 2 */}
+        <motion.h1
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-6 
+                     bg-gradient-to-r from-[#FF7043] to-[#E53935] 
+                     bg-clip-text text-transparent leading-tight"
+        >
+          {HERO_CONTENT.heading2}
+        </motion.h1>
 
-          <p className="text-gray-400 text-lg mb-6">
-            {HERO_CONTENT.description}
-          </p>
+        {/* Description */}
+        <motion.p
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-gray-200 text-xl mb-10 max-w-3xl mx-auto font-light"
+        >
+          {HERO_CONTENT.description}
+        </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full">
-            {/* Primary Button - Link to Contact page */}
-            <Link
-              to="/contact"
-              className="cursor-pointer bg-[#DC2828] text-white border border-transparent
-              hover:border-[#DC2828] hover:text-[#DC2828] hover:bg-transparent
-              transition px-6 py-2 rounded-md hover:opacity-90 w-full sm:w-auto text-center"
-            >
-              {HERO_CONTENT.buttons.primary}
-            </Link>
-
-            {/* Secondary Button */}
-            <Link
-              to="/aboutdetail"
-              className="border border-[#DC2828] text-[#DC2828]
-              hover:bg-[#DC2828] hover:cursor-pointer hover:text-gray-900
-              transition px-6 py-2 rounded-md font-medium w-full sm:w-auto text-center"
-            >
-              {HERO_CONTENT.buttons.secondary}
-             </Link>
-          </div>
-        </motion.div>
-
-        {/* Right Image */}
+        {/* Buttons */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-          className="lg:w-1/2 flex justify-center w-full"
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="flex flex-col sm:flex-row gap-6 justify-center"
         >
-          <motion.img
-            src={HERO_CONTENT.image}
-            alt="AI Illustration"
-            className="w-full max-w-lg pt-10 sm:max-w-md lg:max-w-xl object-contain max-h-[400px] sm:max-h-[500px] lg:max-h-full"
-            whileHover={{ y: -20 }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-          />
-        </motion.div>
+          <Link
+            to="/contact"
+            className="bg-[#E53935] text-white px-10 py-4 rounded-lg text-lg font-semibold 
+                       shadow-lg shadow-[#E53935]/40 transition-all duration-300 
+                       hover:scale-[1.03] hover:shadow-xl hover:shadow-[#E53935]/60"
+          >
+            {HERO_CONTENT.buttons.primary}
+          </Link>
 
+          <Link
+            to="/aboutdetail"
+            className="border-2 border-[#E53935] text-[#E53935] 
+                       px-10 py-4 rounded-lg text-lg font-semibold 
+                       transition-all duration-300 backdrop-blur-sm bg-black/40
+                       hover:bg-[#E53935] hover:text-white hover:shadow-lg hover:shadow-[#E53935]/40"
+          >
+            {HERO_CONTENT.buttons.secondary}
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

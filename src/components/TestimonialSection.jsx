@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaQuoteLeft } from "react-icons/fa";
+import { HiStar } from "react-icons/hi";
 import { TESTIMONIALS_CONTENT } from "../utils/constants/text";
 
 export default function TestimonialsSection() {
@@ -59,7 +60,7 @@ export default function TestimonialsSection() {
 
       slider.style.transform = `translateX(-${newOffset}px)`;
       setOffset(newOffset);
-    }, 3000); // faster auto-slide
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [offset, cardWidth, gap, testimonials.length]);
@@ -89,96 +90,161 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="w-full bg-black text-white py-24 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-12">
+    <section className="w-full bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white py-20 lg:py-32 px-4 sm:px-6 lg:px-20 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle, #DC2828 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}
+        />
+      </div>
 
-        {/* Heading */}
+      {/* Animated Gradient Orb */}
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#DC2828]/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.1, 0.2, 0.1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+
+        {/* Centered Header */}
         <motion.div
-          className="space-y-5 max-w-3xl"
+          className="text-center mb-16 lg:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
         >
-          <button className="px-8 py-2 font-semibold text-[#DC2828] rounded-lg border border-gray-700 text-sm xl:text-lg">
+          {/* Badge */}
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 mb-6 px-5 py-2 border border-[#DC2828]/30 rounded-full text-[#DC2828] text-sm font-semibold bg-[#DC2828]/10 backdrop-blur-sm"
+          >
+            <HiStar className="text-lg" />
             {sectionTag}
-          </button>
+          </motion.div>
 
-          <h2 className="text-4xl sm:text-5xl font-bold leading-tight">
-            <span className="text-white">
-            {heading}
-            </span><br />
-          
-           <span class="bg-linear-to-r from-[#F56716] to-[#EA4920] text-transparent bg-clip-text">
-            {heading1}
+          {/* Heading */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <span className="text-white">{heading}</span>
+            <br />
+            <span className="bg-gradient-to-r from-[#F56716] via-[#EA4920] to-[#DC2828] text-transparent bg-clip-text">
+              {heading1}
             </span>
           </h2>
+
+          <p className="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
+            Don't just take our word for it. Here's what our clients have to say about their experience.
+          </p>
         </motion.div>
 
-        {/* Slider with Arrows */}
-        <div className="relative w-full">
+        {/* Slider Container */}
+        <div className="relative">
           {/* Left Arrow */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, x: -5 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => moveSlider("left")}
-            className="absolute top-1/2 -left-6 transform -translate-y-1/2 bg-[#DC2828] hover:bg-[#1E293B] p-3 rounded-full text-white z-20 shadow-lg"
+            className="absolute top-1/2 -left-4 lg:-left-6 transform -translate-y-1/2 bg-gradient-to-r from-[#DC2828] to-[#EA4920] hover:shadow-2xl hover:shadow-[#DC2828]/50 p-4 rounded-full text-white z-20 shadow-lg transition-all duration-300 border border-[#DC2828]/50"
           >
-            <FaArrowLeft />
-          </button>
+            <FaArrowLeft className="text-lg" />
+          </motion.button>
 
           {/* Right Arrow */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, x: 5 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => moveSlider("right")}
-            className="absolute top-1/2 -right-6 transform -translate-y-1/2 bg-[#DC2828] hover:bg-[#1E293B] p-3 rounded-full text-white z-20 shadow-lg"
+            className="absolute top-1/2 -right-4 lg:-right-6 transform -translate-y-1/2 bg-gradient-to-r from-[#DC2828] to-[#EA4920] hover:shadow-2xl hover:shadow-[#DC2828]/50 p-4 rounded-full text-white z-20 shadow-lg transition-all duration-300 border border-[#DC2828]/50"
           >
-            <FaArrowRight />
-          </button>
+            <FaArrowRight className="text-lg" />
+          </motion.button>
 
           {/* Slider */}
           <div className="w-full overflow-hidden" ref={containerRef}>
             <div ref={sliderRef} className="flex" style={{ gap: `${gap}px` }}>
               {loopedTestimonials.map((t, i) => (
-                <div
+                <motion.div
                   key={i}
-                  className="rounded-2xl border border-[#1E293B] hover:border-[#334155] transition flex-none flex flex-col bg-[#121721] p-8"
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className="rounded-2xl border border-white/10 hover:border-[#DC2828]/50 transition-all duration-300 flex-none flex flex-col bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-sm shadow-xl hover:shadow-2xl hover:shadow-[#DC2828]/20 p-8 relative overflow-hidden group"
                   style={{ width: `${cardWidth}px` }}
                 >
-                  <p className="text-gray-300 mb-6 text-sm lg:text-base leading-relaxed flex-1">
-                    {t.text}
-                  </p>
+                  {/* Top Gradient Accent */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-transparent via-[#DC2828] to-transparent rounded-full"></div>
 
-                  <div className="w-12 h-0.5 bg-[#DC2828] mb-4"></div>
+                  {/* Quote Icon */}
+                  <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <FaQuoteLeft className="text-6xl text-[#DC2828]" />
+                  </div>
 
-                   {/* ⭐ Star Ratings */}
-                  <div className="flex space-x-1 mt-auto justify-center pb-4">
+                  {/* Star Ratings - Top */}
+                  <div className="flex space-x-1 mb-6">
                     {Array.from({ length: 5 }).map((_, idx) => (
-                      <span key={idx} className="text-yellow-400 text-2xl">
-                        {idx < (t.rating || 5) ? "★" : "☆"}
-                      </span>
+                      <HiStar 
+                        key={idx} 
+                        className={`text-2xl ${idx < (t.rating || 5) ? "text-[#DC2828]" : "text-gray-600"}`}
+                      />
                     ))}
                   </div>
 
-                  {/* Name + Image */}
-                  <div className="flex items-center mb-4">
+                  {/* Testimonial Text */}
+                  <p className="text-gray-300 mb-6 text-base leading-relaxed flex-1 relative z-10">
+                    "{t.text}"
+                  </p>
+
+                  {/* Divider */}
+                  <div className="w-16 h-1 bg-gradient-to-r from-[#DC2828] to-[#EA4920] rounded-full mb-6"></div>
+
+                  {/* Author Info */}
+                  <div className="flex items-center gap-4">
                     {t.image && (
-                      <img
-                        src={t.image}
-                        alt={t.name}
-                        className="w-12 h-12 rounded-full mr-4 object-cover"
-                      />
+                      <div className="relative">
+                        <img
+                          src={t.image}
+                          alt={t.name}
+                          className="w-14 h-14 rounded-full object-cover border-2 border-[#DC2828]/30"
+                        />
+                        {/* Ring effect */}
+                        <div className="absolute inset-0 rounded-full border-2 border-[#DC2828]/50 animate-ping"></div>
+                      </div>
                     )}
                     <div className="text-left">
-                      <h3 className="text-lg lg:text-xl font-semibold">{t.name}</h3>
+                      <h3 className="text-lg font-bold text-white">{t.name}</h3>
                       <p className="text-[#DC2828] text-sm font-semibold">{t.role}</p>
                     </div>
                   </div>
 
-                 
-                </div>
+                  {/* Corner Accent */}
+                  <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-[#DC2828]/10 to-transparent rounded-2xl opacity-0  transition-opacity duration-300"></div>
+
+                  {/* Outer Glow on Hover */}
+                  <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#DC2828]/0 via-[#DC2828]/20 to-[#DC2828]/0 opacity-0  blur-xl transition-opacity duration-300 -z-10"></div>
+                </motion.div>
               ))}
             </div>
           </div>
         </div>
 
+        {/* Bottom Decorative Line */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="mt-16 w-full max-w-md mx-auto h-px bg-gradient-to-r from-transparent via-[#DC2828]/50 to-transparent"
+        />
       </div>
     </section>
   );
