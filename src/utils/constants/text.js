@@ -549,19 +549,19 @@ export const companyContactData = {
     heading: "Email",
     lines: ["example@mail.com", "hello.example2@mail.com"],
     icon: "MdOutlineMail",
-    image: "/images/contact/email.png", // example image path
+   
   },
   phone: {
     heading: "Phone",
     lines: ["+123 456 7890", "+ (123) 3322 4455 632"],
     icon: "FiPhoneCall",
-    image: "/images/contact/phone.png",
+   
   },
   location: {
     heading: "Location",
     lines: ["Address line 01 lorem ipsum", "Las Vegas, USA"],
     icon: "SlLocationPin",
-    image: "/images/contact/location.png",
+   
   },
 };
 
