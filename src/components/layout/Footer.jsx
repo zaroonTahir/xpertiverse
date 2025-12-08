@@ -12,7 +12,6 @@ export default function FooterSection() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Scroll or navigate logic
   const handleNavigation = (id) => {
     if (id === "contact") {
       navigate("/contact");
@@ -49,7 +48,7 @@ export default function FooterSection() {
 
   return (
     <motion.footer
-      className="bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white relative overflow-hidden"
+      className="bg-gradient-to-b from-[#1E1B2B] via-[#2D2643] to-[#1E1B2B] text-white relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -60,14 +59,14 @@ export default function FooterSection() {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle, #DC2828 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle, #B250C6 1px, transparent 1px)`,
             backgroundSize: '50px 50px'
           }}
         />
       </div>
 
       {/* Top Accent Line */}
-      <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#DC2828] to-transparent"></div>
+      <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#B250C6] to-transparent"></div>
 
       <div className="relative z-10 px-4 sm:px-6 lg:px-20 py-16">
         <div className="max-w-7xl mx-auto">
@@ -79,7 +78,7 @@ export default function FooterSection() {
             <motion.div variants={item} className="lg:col-span-1">
               <div className="flex items-center gap-3 mb-6">
                 <div className="text-4xl">🔗</div>
-                <h3 className="text-3xl font-bold bg-gradient-to-r from-[#F56716] to-[#DC2828] bg-clip-text text-transparent">
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-[#4C1E4F] via-[#B250C6] to-[#E8C3F7] bg-clip-text text-transparent">
                   {logo}
                 </h3>
               </div>
@@ -88,22 +87,17 @@ export default function FooterSection() {
               
               {/* Social Icons */}
               <div className="flex gap-4">
-                {[
-                  { icon: FaFacebookF, link: "#" },
-                  { icon: FaTwitter, link: "#" },
-                  { icon: FaLinkedinIn, link: "#" },
-                  { icon: FaInstagram, link: "#" }
-                ].map((social, idx) => (
+                {[{ icon: FaFacebookF }, { icon: FaTwitter }, { icon: FaLinkedinIn }, { icon: FaInstagram }].map((social, idx) => (
                   <motion.a
                     key={idx}
-                    href={social.link}
+                    href="#"
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 rounded-full bg-[#DC2828]/10 border border-[#DC2828]/30 
-                      flex items-center justify-center hover:bg-[#DC2828] hover:border-[#DC2828] 
+                    className="w-10 h-10 rounded-full bg-[#4C1E4F]/10 border border-[#B250C6]/30 
+                      flex items-center justify-center hover:bg-[#B250C6] hover:border-[#B250C6] 
                       transition-all duration-300 group"
                   >
-                    <social.icon className="text-[#DC2828] group-hover:text-white transition-colors" />
+                    <social.icon className="text-[#B250C6] group-hover:text-white transition-colors" />
                   </motion.a>
                 ))}
               </div>
@@ -113,7 +107,7 @@ export default function FooterSection() {
             <motion.div variants={item}>
               <h4 className="text-xl font-bold mb-6 text-white relative inline-block">
                 Navigation
-                <span className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-[#DC2828] to-transparent"></span>
+                <span className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-[#B250C6] to-transparent"></span>
               </h4>
               <ul className="space-y-3">
                 {navigation.map((navItem, index) => {
@@ -122,7 +116,7 @@ export default function FooterSection() {
                     <li key={index}>
                       <button
                         onClick={() => handleNavigation(id)}
-                        className="text-gray-400 hover:text-[#DC2828] transition-colors duration-300 
+                        className="text-gray-400 hover:text-[#B250C6] transition-colors duration-300 
                           hover:translate-x-2 transform inline-block"
                       >
                         → {navItem}
@@ -137,14 +131,14 @@ export default function FooterSection() {
             <motion.div variants={item}>
               <h4 className="text-xl font-bold mb-6 text-white relative inline-block">
                 Quick Links
-                <span className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-[#DC2828] to-transparent"></span>
+                <span className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-[#B250C6] to-transparent"></span>
               </h4>
               <ul className="space-y-3">
                 {quickLinks.map((quickLink, index) => (
                   <li key={index}>
                     <button
                       onClick={() => handleNavigation("contact")}
-                      className="text-gray-400 hover:text-[#DC2828] transition-colors duration-300 
+                      className="text-gray-400 hover:text-[#B250C6] transition-colors duration-300 
                         hover:translate-x-2 transform inline-block"
                     >
                       → {quickLink}
@@ -158,29 +152,29 @@ export default function FooterSection() {
             <motion.div variants={item}>
               <h4 className="text-xl font-bold mb-6 text-white relative inline-block">
                 Get In Touch
-                <span className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-[#DC2828] to-transparent"></span>
+                <span className="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-[#B250C6] to-transparent"></span>
               </h4>
               <div className="space-y-4">
                 <div className="flex items-start gap-3 text-gray-400">
-                  <HiMail className="text-[#DC2828] text-xl mt-1 flex-shrink-0" />
+                  <HiMail className="text-[#B250C6] text-xl mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-sm text-gray-500">Email</p>
-                    <a href="mailto:info@company.com" className="hover:text-[#DC2828] transition-colors">
+                    <a href="mailto:info@company.com" className="hover:text-[#B250C6] transition-colors">
                       info@company.com
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-gray-400">
-                  <HiPhone className="text-[#DC2828] text-xl mt-1 flex-shrink-0" />
+                  <HiPhone className="text-[#B250C6] text-xl mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-sm text-gray-500">Phone</p>
-                    <a href="tel:+1234567890" className="hover:text-[#DC2828] transition-colors">
+                    <a href="tel:+1234567890" className="hover:text-[#B250C6] transition-colors">
                       +1 (234) 567-890
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-gray-400">
-                  <HiLocationMarker className="text-[#DC2828] text-xl mt-1 flex-shrink-0" />
+                  <HiLocationMarker className="text-[#B250C6] text-xl mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-sm text-gray-500">Location</p>
                     <p>123 Business Ave, Suite 100<br />New York, NY 10001</p>
@@ -191,7 +185,7 @@ export default function FooterSection() {
           </div>
 
           {/* Divider */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-8"></div>
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#B250C6]/30 to-transparent mb-8"></div>
 
           {/* Bottom Section */}
           <motion.div 
@@ -199,16 +193,14 @@ export default function FooterSection() {
             className="flex flex-col md:flex-row justify-between items-center gap-6"
           >
             {/* Copyright */}
-            <p className="text-gray-400 text-sm text-center md:text-left">
-              {copyright}
-            </p>
+            <p className="text-gray-400 text-sm text-center md:text-left">{copyright}</p>
 
             {/* Policies */}
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               {policies.map((policy, index) => (
                 <button
                   key={index}
-                  className="text-gray-400 hover:text-[#DC2828] transition-colors duration-300"
+                  className="text-gray-400 hover:text-[#B250C6] transition-colors duration-300"
                 >
                   {policy}
                 </button>
@@ -219,7 +211,7 @@ export default function FooterSection() {
       </div>
 
       {/* Bottom Accent Line */}
-      <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#DC2828] to-transparent"></div>
+      <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#B250C6] to-transparent"></div>
     </motion.footer>
   );
 }

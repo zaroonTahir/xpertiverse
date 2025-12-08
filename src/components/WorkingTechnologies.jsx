@@ -14,12 +14,33 @@ const WorkingTechnologies = () => {
       : projectsData.filter((p) => p.category === active).slice(0, 3);
 
   return (
-    <section className="w-full py-24 px-4 sm:px-6 lg:px-20 bg-[#0D0F14]">
+    <section className="w-full py-24 px-4 sm:px-6 lg:px-20 bg-black relative overflow-hidden">
+      
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle, #B250C6 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}
+        />
+      </div>
+
+      {/* Animated Gradient Orb */}
+      <motion.div
+        className="absolute top-32 left-1/4 w-96 h-96 bg-[#B250C6]/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.1, 0.2, 0.1],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       {/* Top Section */}
-      <div className="max-w-7xl mx-auto text-center mb-12">
+      <div className="max-w-7xl mx-auto text-center mb-12 relative z-10">
         <div className="flex justify-center mb-10">
-          <button className="px-6 py-2 border border-[#1E293B] rounded-lg text-[#DC2828] text-sm xl:text-lg font-semibold">
+          <button className="px-6 py-2 border border-[#4C1E4F]/50 rounded-lg text-[#B250C6] text-sm xl:text-lg font-semibold">
             {projectSectionText.topButton}
           </button>
         </div>
@@ -27,7 +48,7 @@ const WorkingTechnologies = () => {
         <h2 className="text-4xl sm:text-5xl font-bold leading-tight">
           <span className="text-white">{projectSectionText.titleLine1}</span>
           <br />
-          <span className="bg-linear-to-r from-[#F56716] to-[#EA4920] text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-[#4C1E4F] via-[#B250C6] to-[#E8C3F7] text-transparent bg-clip-text">
             {projectSectionText.titleLine2}
           </span>
         </h2>
@@ -38,11 +59,11 @@ const WorkingTechnologies = () => {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto relative z-10">
         {filteredProjects.map((p) => (
           <motion.div
             key={p.id}
-            className="relative rounded-3xl overflow-hidden shadow-lg cursor-pointer group hover:border border-[#DC2828] bg-[#121721]"
+            className="relative rounded-3xl overflow-hidden shadow-lg cursor-pointer group hover:border border-[#B250C6] bg-[#121721]"
             whileHover={{ scale: 1.05 }}
           >
             <img
@@ -54,7 +75,7 @@ const WorkingTechnologies = () => {
             <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition duration-500"></div>
 
             <motion.div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-              <span className="text-[#DC2828] text-xs font-semibold">{p.tag}</span>
+              <span className="text-[#B250C6] text-xs font-semibold">{p.tag}</span>
 
               <h3 className="text-white text-xl sm:text-2xl font-bold mt-1">{p.title}</h3>
 
@@ -78,11 +99,11 @@ const WorkingTechnologies = () => {
                 onClick={() => navigate(`/projects/${p.id}`)}
                 className="
                   mt-4 px-4 py-2 text-sm font-semibold
-                  bg-[#DC2828] text-white 
+                  bg-[#B250C6] text-white 
                   border border-transparent 
                   rounded-lg cursor-pointer 
                   transition
-                  hover:bg-transparent hover:border-[#DC2828] hover:text-[#DC2828]
+                  hover:bg-transparent hover:border-[#B250C6] hover:text-[#B250C6]
                 "
               >
                 {projectSectionText.viewDetailsBtn}
@@ -92,10 +113,11 @@ const WorkingTechnologies = () => {
         ))}
       </div>
 
-      <div className="text-center mt-16">
+      {/* View All Button */}
+      <div className="text-center mt-16 relative z-10">
         <button
           onClick={() => navigate("/projects")}
-          className="px-8 py-3 bg-[#DC2828] text-white text-sm hover:cursor-pointer font-semibold border border-transparent rounded-md shadow-md transition-all duration-300 hover:bg-transparent hover:text-[#DC2828] hover:border-[#DC2828]"
+          className="px-8 py-3 bg-[#B250C6] text-white text-sm hover:cursor-pointer font-semibold border border-transparent rounded-md shadow-md transition-all duration-300 hover:bg-transparent hover:text-[#B250C6] hover:border-[#B250C6]"
         >
           {projectSectionText.viewAllBtn}
         </button>

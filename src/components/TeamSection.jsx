@@ -11,9 +11,7 @@ export default function TeamSection() {
 
   const container = {
     hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.15 },
-    },
+    visible: { transition: { staggerChildren: 0.15 } },
   };
 
   const cardVariant = {
@@ -22,14 +20,14 @@ export default function TeamSection() {
   };
 
   return (
-    <section className="w-full bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white py-20 lg:py-32 px-4 sm:px-6 lg:px-20 relative overflow-hidden">
+    <section className="w-full bg-black text-white py-20 lg:py-32 px-4 sm:px-6 lg:px-20 relative overflow-hidden">
       
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle, #DC2828 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle, #B250C6 1px, transparent 1px)`,
             backgroundSize: '50px 50px'
           }}
         />
@@ -37,21 +35,17 @@ export default function TeamSection() {
 
       {/* Animated Gradient Orb */}
       <motion.div
-        className="absolute top-40 right-20 w-96 h-96 bg-[#DC2828]/10 rounded-full blur-3xl"
+        className="absolute top-40 right-20 w-96 h-96 bg-[#B250C6]/10 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.1, 0.2, 0.1],
         }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* Header Section - Centered */}
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +56,7 @@ export default function TeamSection() {
           {/* Badge */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 mb-6 px-5 py-2 border border-[#DC2828]/30 rounded-full text-[#DC2828] text-sm font-semibold bg-[#DC2828]/10 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 mb-6 px-5 py-2 border border-[#B250C6]/30 rounded-full text-[#B250C6] text-sm font-semibold bg-[#4C1E4F]/20 backdrop-blur-sm"
           >
             <HiUsers className="text-lg" />
             {sectionTag}
@@ -72,7 +66,7 @@ export default function TeamSection() {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             <span className="text-white">{heading}</span>
             <br />
-            <span className="bg-gradient-to-r from-[#F56716] via-[#EA4920] to-[#DC2828] text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-[#4C1E4F] via-[#B250C6] to-[#E8C3F7] text-transparent bg-clip-text">
               {heading1}
             </span>
           </h2>
@@ -89,11 +83,11 @@ export default function TeamSection() {
             onClick={() => navigate("/all-team-members")}
             className="
               group inline-flex items-center gap-3 px-8 py-4 rounded-xl
-              bg-gradient-to-r from-[#DC2828] to-[#EA4920]
+              bg-gradient-to-r from-[#B250C6] to-[#E8C3F7]
               text-white font-bold text-base
-              shadow-lg shadow-[#DC2828]/30 hover:shadow-2xl hover:shadow-[#DC2828]/50
+              shadow-lg shadow-[#B250C6]/30 hover:shadow-2xl hover:shadow-[#B250C6]/50
               transition-all duration-300
-              border border-[#DC2828]/50 hover:border-[#DC2828]
+              border border-[#B250C6]/50 hover:border-[#B250C6]
             "
           >
             View All Team
@@ -117,11 +111,10 @@ export default function TeamSection() {
                 key={i}
                 variants={cardVariant}
                 whileHover={{ y: -10 }}
-                className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-white/10 hover:border-[#DC2828]/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-[#DC2828]/20 group"
+                className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-white/10 hover:border-[#B250C6]/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-[#B250C6]/20 group"
               >
                 {/* Image Container */}
                 <div className="relative h-80 overflow-hidden">
-                  {/* Image */}
                   <img
                     src={member.img}
                     alt={member.name}
@@ -133,8 +126,6 @@ export default function TeamSection() {
 
                   {/* Content Overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 transform transition-all duration-500">
-                    
-                    {/* Name & Role */}
                     <motion.div
                       initial={{ y: 0 }}
                       className="transform transition-all duration-500 group-hover:-translate-y-2"
@@ -142,45 +133,31 @@ export default function TeamSection() {
                       <h3 className="text-xl font-bold text-white mb-1">
                         {member.name}
                       </h3>
-                      <p className="text-[#DC2828] text-sm font-semibold">
+                      <p className="text-[#B250C6] text-sm font-semibold">
                         {member.role}
                       </p>
                     </motion.div>
 
-                    {/* Social Icons */}
                     <div className="flex gap-3 mt-4 opacity-0 translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
-                      <motion.div
-                        whileHover={{ scale: 1.2, rotate: 5 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="w-9 h-9 rounded-full bg-gradient-to-r from-[#DC2828] to-[#EA4920] flex items-center justify-center cursor-pointer shadow-lg hover:shadow-[#DC2828]/50 transition-shadow"
-                      >
-                        <Fb className="text-white text-base" />
-                      </motion.div>
-                      
-                      <motion.div
-                        whileHover={{ scale: 1.2, rotate: 5 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="w-9 h-9 rounded-full bg-gradient-to-r from-[#DC2828] to-[#EA4920] flex items-center justify-center cursor-pointer shadow-lg hover:shadow-[#DC2828]/50 transition-shadow"
-                      >
-                        <Twitter className="text-white text-base" />
-                      </motion.div>
-                      
-                      <motion.div
-                        whileHover={{ scale: 1.2, rotate: 5 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="w-9 h-9 rounded-full bg-gradient-to-r from-[#DC2828] to-[#EA4920] flex items-center justify-center cursor-pointer shadow-lg hover:shadow-[#DC2828]/50 transition-shadow"
-                      >
-                        <Pinterest className="text-white text-base" />
-                      </motion.div>
+                      {[Fb, Twitter, Pinterest].map((Icon, idx) => (
+                        <motion.div
+                          key={idx}
+                          whileHover={{ scale: 1.2, rotate: 5 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="w-9 h-9 rounded-full bg-gradient-to-r from-[#B250C6] to-[#E8C3F7] flex items-center justify-center cursor-pointer shadow-lg hover:shadow-[#B250C6]/50 transition-shadow"
+                        >
+                          <Icon className="text-white text-base" />
+                        </motion.div>
+                      ))}
                     </div>
                   </div>
 
                   {/* Corner Accent */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#DC2828]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#B250C6]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
 
                 {/* Bottom Gradient Line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#DC2828] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#B250C6] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </motion.div>
             );
           })}
