@@ -2,7 +2,7 @@ import React from "react";
 import { HERO_CONTENT } from "../utils/constants/text";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import bgVideo from "../assets/videos/bg2.mp4";
+import bgVideo from "../assets/videos/bg5.mov";
 
 const HeroSection = () => {
   return (
@@ -23,6 +23,46 @@ const HeroSection = () => {
         {/* Gradient Overlays for better text contrast */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-slate-800/90"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+        
+        {/* OVERLAY OPTIONS - Choose One */}
+        
+        {/* Option 1: Animated Mesh Overlay */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)
+            `,
+          }}
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+
+        {/* Option 2: Noise/Grain Overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-30"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' /%3E%3C/filter%3E%3Crect width='400' height='400' fill='white' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E")`,
+            backgroundSize: "200px 200px",
+          }}
+        />
+
+        {/* Option 3: Vignette Overlay */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.6) 100%)
+            `,
+          }}
+        />
         
         {/* Animated Gradient Orbs */}
         <motion.div
@@ -248,18 +288,16 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Stats or Features - Optional Enhancement */}
+        {/* Stats or Features */}
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
           className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto"
         >
-          {[
-            { number: "500+", label: "Projects Delivered" },
+          {[{ number: "500+", label: "Projects Delivered" },
             { number: "98%", label: "Client Satisfaction" },
-            { number: "24/7", label: "Support Available" }
-          ].map((stat, i) => (
+            { number: "24/7", label: "Support Available" }].map((stat, i) => (
             <motion.div
               key={i}
               className="backdrop-blur-xl bg-slate-900/40 rounded-2xl p-6 
